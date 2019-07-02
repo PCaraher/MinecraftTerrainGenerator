@@ -595,7 +595,7 @@ void BlendApp::UpdateMainPassCB(const GameTimer& gt)
 	//Also use the cosine function to change the intensity of the light in the world over time, to give the illusion of 
 	//day and night
 	float rotation = gt.TotalTime();
-	float xCoord = 0.5f*(cos(0.05f*rotation));
+	float xCoord = 0.5f*(cos(0.5f*rotation));
 	float strength = xCoord;
 
 
@@ -630,11 +630,11 @@ void BlendApp::UpdateMainPassCB(const GameTimer& gt)
 	mMainPassCB.DeltaTime = gt.DeltaTime();
 	mMainPassCB.AmbientLight = { 0.25f, 0.25f, 0.35f, 1.0f };
 	mMainPassCB.Lights[0].Direction = { xCoord, -0.57735f, 0.57735f };// Changing this lights direction vector using the xCoord variable.
-	mMainPassCB.Lights[0].Strength = { strength, strength, strength }; //Was {0.9f, 0.9f, 0.8f} The strength value is the same as the xCoord, it will change intensity over time
+	mMainPassCB.Lights[0].Strength = { 0.9f, 0.9f, 0.8f }; //Was {0.9f, 0.9f, 0.8f} The strength value is the same as the xCoord, it will change intensity over time
 	mMainPassCB.Lights[1].Direction = { 0.57735f, -0.57735f, 0.57735f };
-	mMainPassCB.Lights[1].Strength = { strength, strength, strength };
+	mMainPassCB.Lights[1].Strength = { 0.9f, 0.9f, 0.8f };
 	mMainPassCB.Lights[2].Direction = { 0.0f, -0.707f, -0.707f };
-	mMainPassCB.Lights[2].Strength = { strength, strength, strength };
+	mMainPassCB.Lights[2].Strength = { 0.9f, 0.9f, 0.8f };
 
 	auto currPassCB = mCurrFrameResource->PassCB.get();
 	currPassCB->CopyData(0, mMainPassCB);
